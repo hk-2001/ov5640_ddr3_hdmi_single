@@ -8,13 +8,19 @@
 
 ## 实拍
 
+![摄像头实时画面](DEBUG/demo_live.gif)
+
+最终效果：摄像头对准桌面实时采集，经 DDR3 帧缓存后送到 HDMI 显示器。画面里的鼠标和 RGB 键盘是摄像头实际拍到的东西，手持时整个画面会跟着晃。
+
+这段是从录像里截的 6 秒。转 GIF 前做了轻度降噪——原素材噪点偏多，压成 GIF 之后噪点会放大成满屏跳动的噪块，反而看不清内容。完整 13 秒的录像在 [demo_live.mp4](DEBUG/demo_live.mp4)。
+
 ![显示器出八色彩条](DEBUG/demo_colorbar.jpg)
 
-这是 `COLOR_TEST=1` 时的彩条模式：跳过摄像头和 DDR，直接由 FPGA 生成八色竖条。用来快速判断问题在采集端还是显示端——彩条对，说明 HDMI 通路没问题，麻烦在前面。
+`COLOR_TEST=1` 时的彩条模式：跳过摄像头和 DDR，直接由 FPGA 生成八色竖条。用来快速判断问题在采集端还是显示端——彩条对，说明 HDMI 通路没问题，麻烦在前面。
 
 ![HDMI 输出时序（ILA）](DEBUG/ila_waveform/hdmi.png)
 
-ILA 抓的 HDMI 输出侧时序，从上到下是 `hdmi_out_clk`、`hsync`、`vsync`、`de`、`rgb[23:0]`。
+HDMI 输出侧的 ILA 抓包，从上到下是 `hdmi_out_clk`、`hsync`、`vsync`、`de`、`rgb[23:0]`。
 
 ---
 
